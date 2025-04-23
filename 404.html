@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting...</title>
+    <script>
+      // Save the path (including search params and hash) to sessionStorage
+      const redirectPath = window.location.pathname + window.location.search + window.location.hash;
+      sessionStorage.setItem('redirectAfterReload', redirectPath);
+      // Redirect to the root
+      window.location.href = '/';
+    </script>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        text-align: center;
+        padding: 20px;
+        background-color: #f9f9f9;
+      }
+      .loader {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        border: 3px solid rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
+        border-top-color: #000;
+        animation: spin 1s ease-in-out infinite;
+        margin-bottom: 10px;
+      }
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loader"></div>
+    <p>Redirecting...</p>
+  </body>
+</html> 
