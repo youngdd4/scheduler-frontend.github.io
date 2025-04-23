@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Render.com Configuration</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    h1 {
+      color: #5a67d8;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 0.5rem;
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 0.25rem;
+      font-size: 1rem;
+    }
+    .btn {
+      background-color: #5a67d8;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.25rem;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background-color 0.2s;
+    }
+    .btn:hover {
+      background-color: #4c51bf;
+    }
+    .btn-secondary {
+      background-color: #a0aec0;
+      margin-left: 0.5rem;
+    }
+    .btn-secondary:hover {
+      background-color: #8795a1;
+    }
+    .message {
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 0.25rem;
+    }
+    .success {
+      background-color: #c6f6d5;
+      color: #276749;
+    }
+    .error {
+      background-color: #fed7d7;
+      color: #c53030;
+    }
+    .info-box {
+      background-color: #ebf8ff;
+      padding: 1rem;
+      border-radius: 0.25rem;
+      margin: 1rem 0;
+    }
+    .current-config {
+      background-color: #f7fafc;
+      padding: 1rem;
+      border-radius: 0.25rem;
+      margin-top: 2rem;
+    }
+    pre {
+      background-color: #edf2f7;
+      padding: 0.5rem;
+      border-radius: 0.25rem;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Render.com Configuration</h1>
+  
+  <div class="info-box">
+    <p><strong>Important:</strong> Use this page to configure your TikTok Integration app for Render.com deployment.</p>
+    <p>Enter the URL of your Render.com backend service to connect your frontend with the backend API.</p>
+  </div>
+  
+  <div id="message-container"></div>
+  
+  <div class="form-group">
+    <label for="render-url">Render Backend URL</label>
+    <input 
+      type="text" 
+      id="render-url" 
+      placeholder="https://scheduler-backend-3yk0.onrender.com"
+      autocomplete="off"
+    >
+  </div>
+  
+  <div>
+    <button id="save-btn" class="btn">Save Configuration</button>
+    <button id="clear-btn" class="btn btn-secondary">Clear Saved Config</button>
+  </div>
+  
+  <div class="current-config">
+    <h2>Current Configuration</h2>
+    <div>
+      <strong>Backend URL:</strong> <span id="current-backend-url">Not set</span>
+    </div>
+    <div>
+      <strong>Running in:</strong> <span id="environment-type"></span>
+    </div>
+    <div>
+      <button id="back-btn" class="btn" style="margin-top: 1rem;">Return to App</button>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const messageContainer = document.getElementById('message-container');
+      const renderUrlInput = document.getElementById('render-url');
+      const saveBtn = document.getElementById('save-btn');
+      const clearBtn = document.getElementById('clear-btn');
+      const backBtn = document.getElementById('back-btn');
+      const currentBackendUrl = document.getElementById('current-backend-url');
+      const environmentType = document.getElementById('environment-type');
+      
+      // Show a message
+      const showMessage = (message, type = 'info') => {
+        messageContainer.innerHTML = `<div class="message ${type}">${message}</div>`;
+        
+        // Clear message after 5 seconds
+        setTimeout(() => {
+          messageContainer.innerHTML = '';
+        }, 5000);
+      };
+      
+      // Update current configuration display
+      const updateCurrentConfig = () => {
+        const savedRenderUrl = localStorage.getItem('render_backend_url');
+        
+        if (savedRenderUrl) {
+          currentBackendUrl.textContent = savedRenderUrl;
+          renderUrlInput.value = savedRenderUrl;
+        } else {
+          currentBackendUrl.textContent = 'Not set (will use default)';
+          renderUrlInput.value = '';
+        }
+        
+        // Determine environment
+        const isProd = window.location.hostname !== 'localhost' && 
+                      !window.location.hostname.includes('127.0.0.1');
+        
+        environmentType.textContent = isProd ? 'Production' : 'Development';
+      };
+      
+      // Initialize
+      updateCurrentConfig();
+      
+      // Handle Save button click
+      saveBtn.addEventListener('click', () => {
+        const url = renderUrlInput.value.trim();
+        
+        if (!url) {
+          showMessage('Please enter a valid URL', 'error');
+          return;
+        }
+        
+        // Basic URL validation
+        try {
+          new URL(url);
+        } catch (e) {
+          showMessage('Invalid URL format. Please include the protocol (https://)', 'error');
+          return;
+        }
+        
+        // Save to localStorage
+        let formattedUrl = url;
+        if (formattedUrl.endsWith('/')) {
+          formattedUrl = formattedUrl.slice(0, -1);
+        }
+        
+        localStorage.setItem('render_backend_url', formattedUrl);
+        
+        showMessage('Configuration saved successfully!', 'success');
+        updateCurrentConfig();
+      });
+      
+      // Handle Clear button click
+      clearBtn.addEventListener('click', () => {
+        localStorage.removeItem('render_backend_url');
+        localStorage.removeItem('ngrok_url');
+        
+        showMessage('Configuration cleared!', 'success');
+        updateCurrentConfig();
+      });
+      
+      // Handle Back button click
+      backBtn.addEventListener('click', () => {
+        window.location.href = '/';
+      });
+    });
+  </script>
+</body>
+</html> 

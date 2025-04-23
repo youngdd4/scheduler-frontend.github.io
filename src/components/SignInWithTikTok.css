@@ -1,0 +1,195 @@
+.tiktok-signin-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  font-weight: 600;
+  font-size: 16px;
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  min-width: 220px;
+}
+
+.tiktok-signin-button:hover {
+  background-color: #1d1d1d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tiktok-signin-button:active {
+  transform: translateY(0);
+}
+
+.tiktok-signin-button::before {
+  content: '';
+  background-image: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19.5954 6.13212C19.1159 5.93425 18.6776 5.65218 18.3067 5.29936C17.4255 4.42736 17.003 3.30103 17.0041 2.10212V1.80212H13.5022V15.9979C13.5022 16.8749 13.1539 17.7221 12.5266 18.347C11.8992 18.9719 11.0398 19.3173 10.1457 19.3173C9.25157 19.3173 8.39222 18.9719 7.76486 18.347C7.1375 17.7221 6.78919 16.8749 6.78919 15.9979C6.78919 15.121 7.1375 14.2738 7.76486 13.6489C8.39222 13.024 9.25157 12.6786 10.1457 12.6786C10.4335 12.6786 10.7158 12.7142 10.9847 12.7797V9.36642C10.711 9.33893 10.4316 9.32687 10.1457 9.32887C8.73682 9.32887 7.35797 9.74243 6.19351 10.5152C5.02906 11.288 4.1334 12.3838 3.62382 13.6578C3.11424 14.9318 3.01583 16.3259 3.34275 17.6584C3.66967 18.9908 4.40724 20.1992 5.45647 21.1084C6.5057 22.0177 7.81908 22.5991 9.21392 22.783C10.6088 22.9669 12.0257 22.7449 13.2845 22.1431C14.5432 21.5413 15.5868 20.5889 16.2825 19.4092C16.9783 18.2295 17.2959 16.8771 17.2959 15.5021V8.51462C18.6495 9.39637 20.2414 9.86462 21.8726 9.86012V6.54337C21.107 6.54512 20.3519 6.39437 19.6622 6.10087L19.5954 6.13212Z" fill="white"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  display: inline-block;
+}
+
+.signin-tip {
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  color: #888;
+  font-style: italic;
+}
+
+// Add styles for the server error message
+.server-error-message {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background-color: #fff2f0;
+  border: 1px solid #ffccc7;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.server-error-message p {
+  color: #ff4d4f;
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.retry-server-button {
+  padding: 0.4rem 0.8rem;
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: background-color 0.2s;
+}
+
+.retry-server-button:hover {
+  background-color: #ff7875;
+}
+
+.backend-config {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.backend-info {
+  margin-bottom: 0.5rem;
+  color: #666;
+}
+
+.current-backend {
+  font-weight: 600;
+  color: #333;
+  word-break: break-all;
+}
+
+.backend-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.backend-button {
+  padding: 0.3rem 0.5rem;
+  font-size: 0.7rem;
+  background-color: #fff;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #666;
+}
+
+.backend-button:hover {
+  background-color: #f0f0f0;
+  border-color: #ccc;
+}
+
+.backend-button.active {
+  background-color: #e6f7ff;
+  border-color: #91d5ff;
+  color: #1890ff;
+  font-weight: 500;
+}
+
+.backend-button.clear {
+  background-color: #fff0f0;
+  border-color: #ffccc7;
+  color: #ff4d4f;
+}
+
+.backend-button.api-subdomain {
+  background-color: #f9f0ff;
+  border-color: #d3adf7;
+  color: #722ed1;
+}
+
+.backend-button.api-subdomain:hover {
+  background-color: #efdbff;
+  border-color: #b37feb;
+}
+
+.connection-test {
+  margin: 0.75rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.test-connection-button {
+  padding: 0.3rem 0.7rem;
+  background-color: #f0f0f0;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.test-connection-button:hover:not(:disabled) {
+  background-color: #e6e6e6;
+  border-color: #bbb;
+}
+
+.test-connection-button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.connection-result {
+  margin-top: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  text-align: center;
+  width: 100%;
+}
+
+.connection-result.success {
+  background-color: #f6ffed;
+  border: 1px solid #b7eb8f;
+  color: #52c41a;
+}
+
+.connection-result.failure {
+  background-color: #fff2f0;
+  border: 1px solid #ffccc7;
+  color: #ff4d4f;
+}
+
+.connection-result p {
+  margin: 0;
+  word-break: break-word;
+} 

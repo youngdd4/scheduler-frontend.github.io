@@ -1,0 +1,162 @@
+.post-scheduler {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.post-scheduler h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: #333;
+  text-align: center;
+}
+
+.schedule-form {
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #555;
+}
+
+.form-group textarea,
+.form-group input[type="datetime-local"] {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.form-group textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.media-preview {
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  background-color: #f8f8f8;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.schedule-button {
+  display: block;
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.schedule-button:hover {
+  background-color: #333;
+}
+
+.schedule-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.scheduled-posts {
+  margin-top: 3rem;
+  border-top: 1px solid #eee;
+  padding-top: 1.5rem;
+}
+
+.scheduled-posts h3 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: #555;
+}
+
+.no-posts {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+  padding: 2rem 0;
+}
+
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.post-item {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-left: 4px solid #eee;
+  background-color: #f9f9f9;
+  border-radius: 0 4px 4px 0;
+}
+
+.post-item.status-scheduled {
+  border-left-color: #1890ff;
+}
+
+.post-item.status-posted {
+  border-left-color: #52c41a;
+}
+
+.post-item.status-failed {
+  border-left-color: #f5222d;
+}
+
+.post-content {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.post-time {
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 0.5rem;
+}
+
+.post-status {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.status-scheduled .post-status {
+  color: #1890ff;
+}
+
+.status-posted .post-status {
+  color: #52c41a;
+}
+
+.status-failed .post-status {
+  color: #f5222d;
+}
+
+.post-media {
+  margin-top: 1rem;
+}
+
+.post-media img {
+  max-width: 100%;
+  max-height: 200px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+} 
