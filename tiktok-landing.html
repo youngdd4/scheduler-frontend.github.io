@@ -79,7 +79,7 @@
             // Set continue button URL and redirect
             const continueBtn = document.getElementById('continue-btn');
             if (code) {
-                const appUrl = 'http://localhost:5173/tiktok-callback?code=' + code;
+                const appUrl = 'https://app.emmanueltech.store/tiktok-callback?code=' + code;
                 const redirectUrl = appUrl + (state ? '&state=' + state : '');
                 
                 // Set manual button URL
@@ -97,7 +97,7 @@
                 }, 4000);
             } else {
                 // No code, redirect to home
-                continueBtn.href = 'http://localhost:5173';
+                continueBtn.href = 'https://app.emmanueltech.store';
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('manual-redirect').style.display = 'block';
             }
